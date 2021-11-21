@@ -27,7 +27,7 @@ class MahasiswaList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/mahasiswa/')
+        axios.get('http://localhost:3000/')
             .then(res => {
                 this.setState({ mahasiswa: res.data })
             })
@@ -35,7 +35,7 @@ class MahasiswaList extends Component {
     }
 
     deleteMahasiswa(id) {
-        axios.delete('http://localhost:3000/mahasiswa/' +id)
+        axios.delete('http://localhost:3000/delete/' +id)
             .then(res => console.log(res.data));
 
         this.setState({ mahasiswa: this.state.mahasiswa.filter(el => el._id !== id)})

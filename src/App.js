@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
 
 import Navbar from "./components/Navbar";
 import MahasiswaList from "./components/MahasiswaList";
@@ -14,8 +13,8 @@ function App() {
     <br />
     <Routes>
       <Route exact path="/" component={MahasiswaList} />
-      <Route path="/edit/:id" component={EditMahasiswa} />
-      <Route path="/create" component={AddMahasiswa} />
+      <Route path="/update/:id" component={EditMahasiswa} />
+      <Route path="/add" component={AddMahasiswa} />
     </Routes>
   </Router>
   );

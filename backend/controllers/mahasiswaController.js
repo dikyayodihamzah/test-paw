@@ -5,13 +5,13 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const Mahasiswa = mongoose.model('Mahasiswa');
 
-router.get('/', (req, res) => {
+router.route('/').get((req, res) => {
     Mahasiswa.find()
         .then(mahasiswas => res.json(mahasiswas))
         .catch(err => res.status(400).json('Error: '+err));
 });
 
-router.post('/add', (req, res) => {
+router.route('/add').post((req, res) => {
     var mahasiswa = new Mahasiswa();
 
     mahasiswa.name = req.body.name;
@@ -21,7 +21,7 @@ router.post('/add', (req, res) => {
     mahasiswa.nohp = req.body.nohp;
 
     mahasiswa.save()
-        .then(() => res.json('Data mahasiswa ditambahkan!'))
+        .then(() => res.json('Data mahasiswa berhasil ditambahkan!'))
         .catch(err => res.status(400).json('Error: '+err));
 });
 
@@ -41,13 +41,13 @@ router.route('/update/:id').post((req,res) =>{
         .catch(err => res.status(400).json('Error: '+err))
 });
 
-router.get('/:id', (req, res) => {
+router.route('/:id').get((req, res) => {
     Mahasiswa.findById(req.params.id)
         .then(mahasiswa => res.json(mahasiswa))
         .catch(err => res.status(400).json('Error: '+err));
 });
 
-router.get('/delete/:id', (req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     Mahasiswa.findByIdAndDelete(req.params.id)
         .then(mahasiswa => res.json('Data mahasiswa berhasil dihapus!'))
         .catch(err => res.status(400).json('Error: '+err));

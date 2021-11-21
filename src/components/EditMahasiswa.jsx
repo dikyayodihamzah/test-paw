@@ -22,7 +22,7 @@ class EditMahasiswa extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/mahasiswa/'+this.props.match.params.id)
+        axios.get('http://localhost:3000/update/'+this.props.match.params.id)
             .then(res => {
                 this.setState({
                     name: res.data.name,
@@ -64,7 +64,7 @@ class EditMahasiswa extends Component {
 
         console.log(mahasiswa);
 
-        axios.post('http://localhost:3000/mahasiswa/edit'+this.props.match.params.id, mahasiswa)
+        axios.post('http://localhost:3000/update/'+this.props.match.params.id, mahasiswa)
             .then(res => console.log(res.data));
 
         window.location = "/";

@@ -48,7 +48,7 @@ class AddMahasiswa extends Component {
 
         console.log(mahasiswa);
 
-        axios.post('http://localhost:3000/mahasiswa/add', mahasiswa)
+        axios.post('http://localhost:3000/add', mahasiswa)
             .then(res => console.log(res.data));
 
         window.location = "/";
