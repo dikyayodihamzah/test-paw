@@ -21,8 +21,9 @@ class EditMahasiswa extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    componentDidMount(id) {
-        axios.get('http://localhost:5000/'+id)
+    componentDidMount() {
+        const id = window.location.pathname.split("/")[2]
+        axios.get('http://localhost:5000/' + id)
             .then(res => {
                 this.setState({
                     name: res.data.name,
@@ -52,7 +53,8 @@ class EditMahasiswa extends Component {
     onChangeNohp(e) {
         this.setState({ nohp: e.target.value})
     }
-    onSubmit(e, id) {
+    onSubmit(e) {
+        const id = window.location.pathname.split("/")[2]
         e.preventDefault();
         const mahasiswa = {
             name: this.state.name,
@@ -65,7 +67,8 @@ class EditMahasiswa extends Component {
         console.log(mahasiswa);
 
         axios.post('http://localhost:5000/update/'+id, mahasiswa)
-            .then(res => console.log(res.data));
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
 
         window.location = "/";
     }
